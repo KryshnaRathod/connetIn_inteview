@@ -1,0 +1,51 @@
+.middle-container {
+  position: relative;
+  background-color: rgb(24,25,26);
+  height: auto;
+  border-left: 1px solid rgb(5, 54, 100);
+  border-right: 1px solid rgb(5, 54, 100);
+  width: auto;
+}
+
+
+.searchBarDiv {
+  margin: auto;
+}
+
+.searchBar {
+  min-width: -webkit-fill-available;
+  border-radius: 50px;
+  outline: none;
+}
+.fixed-container {
+  position: sticky;
+  top: 0px;
+  z-index: 999;
+  background-color:rgb(24,25,26);
+  padding-bottom: 50px;
+}
+
+.fixed-container-blur {
+  position: relative;
+  background-color: rgb(24,25,26);
+  height: auto;
+  border-left: 1px solid rgb(5, 54, 100);
+  border-right: 1px solid rgb(5, 54, 100);
+  width: auto;
+}
+
+.search-bar-div-hidden {
+  display: none;
+  margin: 10px;
+}
+.search-bar-div-visible {
+  margin: 10px;
+  position: absolute;
+  z-index: 999;
+  width: -webkit-fill-available;
+}
+.news-feed-cls-blur, .uploadPostWidget-blur {
+  -webkit-filter: blur(2px);
+}
+
+

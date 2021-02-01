@@ -1,0 +1,65 @@
+.post-container {
+    min-width: -webkit-fill-available;
+    width: auto!important;
+    margin-left: 2% !important;
+    margin-right: 3% !important;
+    height: auto !important;
+    background-color: lavender;
+}
+.postPhotoDiv {
+    margin-top: 12%;
+    border-radius: 50%;
+    height: 69px;
+    width: 69px;
+    background-color: lawngreen;
+}
+.postDiv {
+    margin-top: 2%;
+    border-radius: 30px;
+    height: 69px;
+    width: auto;
+    background-color: rgba(109, 108, 108, 0.26);
+}
+
+.post-share {
+    width: auto;
+    margin: auto;
+    -webkit-text-stroke-width: medium;
+    text-align: center;
+}
+.postDiv:hover {
+    cursor: pointer;
+    background-color: grey;
+}
+.box {
+    margin: inherit;
+    border-top: 1px solid black;
+    text-align: center;
+}
+.icon-item:hover {
+    background-color: grey;
+}
+
+@media screen and (max-width: 1200px) {
+    .postPhotoDiv {
+        margin-top: 30%;
+        border-radius: 50%;
+        height: 55px;
+        width: 55px;
+        background-color: orange;
+    }
+}
+@media screen and (max-width: 900px) {
+    .postPhotoDiv {
+        margin-top: 50%;
+        border-radius: 50%;
+        height: 45px;
+        width: 45px;
+        background-color: orange;
+    }
+}
+@media screen and (max-width: 625px) {
+    .icon-grp {
+        display: none;
+    }
+}

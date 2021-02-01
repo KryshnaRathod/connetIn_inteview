@@ -1,0 +1,25 @@
+.user-profile-picture-modal {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  background-color: lawngreen;
+  margin-bottom: 20px;
+}
+.loader-post-creation {
+    text-align: center;
+}
+@media screen and (max-width: 498px) {
+    .post-creation-userName {
+        margin-left: 5vw;
+    }
+  }
+  @media screen and (max-width: 396px) {
+      .post-creation-userName {
+          margin-left: 10vw;
+      }
+  }
+  @media screen and (max-width: 325px) {
+      .post-creation-userName {
+          margin-left: 15vw;
+      }
+  }

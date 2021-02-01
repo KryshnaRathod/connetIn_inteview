@@ -1,0 +1,12 @@
+.fileUpload-image {
+    margin-left: 0.2vw;
+}
+.fileUpload-image:hover{
+    cursor: pointer;
+}
+.img-hidden {
+    display: none;
+}
+.file-size-error {
+    color: red;
+}

@@ -1,0 +1,11 @@
+.fixed-container-news-feed {
+  position: sticky;
+}
+.feed-container {
+  height: 100vh;
+  width: auto;
+  overflow-y: auto;
+}
+.feed-container::-webkit-scrollbar {
+  display: none;
+}
