@@ -14,7 +14,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import CommentModal from "./CommentModal";
-
+import { SERVER_URL } from "../GlobalCommonData";
 toast.configure();
 
 function Post(props) {
@@ -47,7 +47,7 @@ function Post(props) {
 
   const handleLikeClick = () => {
     setAlreadyLiked(!alreadyLiked);
-    fetch("http://localhost:9999/markLikedOrUnliked", {
+    fetch(`${SERVER_URL}markLikedOrUnliked`, {
       method: "POST",
       body: JSON.stringify({
         userId: userData.userId,
@@ -88,7 +88,7 @@ function Post(props) {
 
   const handlePostComment = () => {
     setLoader(true);
-    fetch("http://localhost:9999/postComment", {
+    fetch(`${SERVER_URL}postComment`, {
       method: "POST",
       body: JSON.stringify({
         userId: userData.userId,

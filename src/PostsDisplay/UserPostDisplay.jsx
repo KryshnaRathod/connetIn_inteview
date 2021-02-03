@@ -5,6 +5,7 @@ import UserPost from "./UserPost";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
+import {SERVER_URL} from '../GlobalCommonData';
 
 toast.configure();
 
@@ -18,7 +19,7 @@ function UserPostDisplay(props) {
   const [initFlag, setInit] = useState(true);
 
   const getPostsFromBackend = () => {
-    let url = `http://localhost:9999/getUsersPost/?limit=${limit}&offset=${offset}&`;
+    let url = `${SERVER_URL}getUsersPost/?limit=${limit}&offset=${offset}&`;
     //console.log(userData);
     userData.posts.forEach((postId) => {
       url += `postIds=${postId}&`;

@@ -8,12 +8,13 @@ import React, { useState, useEffect } from "react";
 import MainPostPage from "./PostsDisplay/MainPostPage";
 import { useDispatch } from "react-redux";
 import { userDataSlice } from "./Store/userDataSlice";
+import {SERVER_URL} from './GlobalCommonData';
 
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
   const getUserDataIfLoggedIn = () => {
-    const url = `http://localhost:9999/getUserData`;
+    const url = `${SERVER_URL}getUserData`;
     fetch(url, { credentials: "include" })
       .then((res) => res.json())
       .then((res) => {

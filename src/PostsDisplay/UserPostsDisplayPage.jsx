@@ -7,6 +7,8 @@ import UploadPostWidget from "../Home/UploadPostWidget";
 import UserPostDisplay from './UserPostDisplay'
 import SearchbarModal from "../Home/SearchbarModal";
 import { useDebouncedCallback } from "use-debounce";
+import { SERVER_URL } from '../GlobalCommonData'; 
+
 
 function UserPostsDisplayPage() {
   const [smallScr, setSmallScreen] = useState(false);
@@ -36,7 +38,7 @@ function UserPostsDisplayPage() {
     (value) => {
       if (value) {
         setModalShow(true);
-        const url = `http://localhost:9999/getSearchResults?searchVal=${value}`;
+        const url = `${SERVER_URL}getSearchResults?searchVal=${value}`;
         fetch(url, { credentials: "include" })
           .then((res) => res.json())
           .then((res) => {

@@ -11,6 +11,7 @@ import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import { Label, Form, FormGroup, Button, Input } from "reactstrap";
 import { useHistory } from "react-router-dom";
+import { SERVER_URL } from "../GlobalCommonData";
 
 function HomeBar() {
   const userInfo = useSelector((globalStore) => globalStore.users);
@@ -20,7 +21,7 @@ function HomeBar() {
     history.push(`/${selectedOption}/${userInfo.userId}`);
   };
   const handleLogOut = () => {
-    fetch("http://localhost:9999/logOut", { credentials: "include" })
+    fetch(`${SERVER_URL}logOut`, { credentials: "include" })
       .then((r) => r.json())
       .then((r) => {
         console.log("logged out..");

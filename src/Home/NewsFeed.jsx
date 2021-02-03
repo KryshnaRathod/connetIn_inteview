@@ -7,6 +7,7 @@ import { postDataSlice } from "../Store/postDataSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
+import {SERVER_URL} from '../GlobalCommonData';
 
 toast.configure();
 
@@ -36,7 +37,7 @@ function NewsFeed() {
       "Content-Type": "application/json",
       authToken: localStorage.getItem("authToken"),
     };
-    const url = `http://localhost:9999/getPosts/?limit=${limit}&offset=${offset}&userId=${userData.userId}`;
+    const url = `${SERVER_URL}getPosts/?limit=${limit}&offset=${offset}&userId=${userData.userId}`;
     fetch(url, { headers: headers, credentials: "include" })
       .then((res) => res.json())
       .then((res) => {

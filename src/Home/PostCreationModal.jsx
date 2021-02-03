@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
-
+import { SERVER_URL } from "../GlobalCommonData";
 toast.configure();
 
 function PostCreationModal(props) {
@@ -45,7 +45,7 @@ function PostCreationModal(props) {
       const headers = {
         authToken: localStorage.getItem("authToken"),
       };
-      fetch("http://localhost:9999/savePost", {
+      fetch(`${SERVER_URL}savePost`, {
         method: "POST",
         headers: headers,
         body: formData,

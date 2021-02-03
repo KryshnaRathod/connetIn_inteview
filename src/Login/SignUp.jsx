@@ -15,6 +15,7 @@ import Spinner from "react-bootstrap/Spinner";
 import imgSrc from "./images/img-2.png";
 import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
+import { SERVER_URL } from "../GlobalCommonData";
 
 function SignUp() {
   const history = useHistory();
@@ -56,7 +57,7 @@ function SignUp() {
     evt.preventDefault();
     if (userData.skills.length > 0) {
       console.log(userData.currentCompany);
-      fetch("http://localhost:9999/signUp", {
+      fetch(`${SERVER_URL}signUp`, {
         method: "POST",
         body: JSON.stringify({
           userName: userData.userName,
@@ -126,7 +127,7 @@ function SignUp() {
   const checkIfUserNamExists = () => {
     if (userData.userName.trim()) {
       setFlag(true);
-      fetch("http://localhost:9999/checkUserName", {
+      fetch(`${SERVER_URL}checkUserName`, {
         method: "POST",
         body: JSON.stringify({ userName: userData.userName }),
         headers: {
@@ -231,7 +232,12 @@ function SignUp() {
                   </Button>
                   <div style={marginAutoCSS}>
                     {availableSpinnerFlag && (
-                      <Spinner animation="border" role="status" size="sm" variant="primary">
+                      <Spinner
+                        animation="border"
+                        role="status"
+                        size="sm"
+                        variant="primary"
+                      >
                         <span className="sr-only">Loading...</span>
                       </Spinner>
                     )}
@@ -346,7 +352,7 @@ function SignUp() {
                 )}
               </FormGroup>
               <div className="form-group">
-                <Button  color="primary">Sign Up</Button>
+                <Button color="primary">Sign Up</Button>
               </div>
             </Form>
           </div>
