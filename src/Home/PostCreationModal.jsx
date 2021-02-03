@@ -83,7 +83,7 @@ function PostCreationModal(props) {
               autoClose: 5 * 1000,
             });
             setTimeout(() => {
-              history.push('/');
+              history.push("/");
             }, 4 * 1000);
           }
         });
@@ -201,7 +201,16 @@ function PostCreationModal(props) {
         <Button onClick={handlePost} disabled={!postText.trim().length}>
           Post
         </Button>
-        <Button onClick={props.onHide} disabled={loader}>
+        <Button
+          onClick={() => {
+            props.onHide();
+            setPostText("");
+            setTagList([]);
+            setTag("");
+            setSelectedImg(null);
+          }}
+          disabled={loader}
+        >
           Close
         </Button>
       </Modal.Footer>

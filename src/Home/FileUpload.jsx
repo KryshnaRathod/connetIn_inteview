@@ -3,8 +3,11 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./FileUpload.css";
+
+toast.configure();
 
 function FileUpload(props) {
   const fileInput = useRef(null);
@@ -14,12 +17,20 @@ function FileUpload(props) {
   const handleFileChange = (event) => {
     const curImg = event.target.files[0];
     console.log(curImg);
-    if (curImg.size > 1048576) {
+    if (curImg !== undefined && curImg.size > 1048576) {
       //Size should be less than 1 MB.
+      toast.error("Image should be less than 1MB", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5 * 1000,
+      });
       setBigImgFlag(true);
     } else {
       setBigImgFlag(false);
       props.setSelectedImg(event.target.files[0]);
+      toast.info("Image Uploaded!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5 * 1000,
+      });
     }
   };
 

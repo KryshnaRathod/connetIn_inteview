@@ -13,6 +13,22 @@
     width: 69px;
     background-color: lawngreen;
 }
+.postPhotoDiv .tooltiptext {
+    visibility: hidden;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.609);
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px; 
+    position: absolute;
+    margin-top: 50px;
+    z-index: 1;
+    
+}
+.postPhotoDiv:hover .tooltiptext {
+    visibility: visible;
+  }
 .postDiv {
     margin-top: 2%;
     border-radius: 30px;

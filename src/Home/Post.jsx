@@ -141,6 +141,11 @@ function Post(props) {
           <Col md="2" lg="2" sm="2" xs="2">
             <div className="user-profile-picture">
               {/*User Image Display as of now dummy display*/}
+              <img
+                className="comment-user-img"
+                src="https://as2.ftcdn.net/jpg/01/26/63/11/500_F_126631173_W9Nq8ZA5s0R0M3ZIBx3BMytVIFseGa9c.jpg"
+                alt=""
+              ></img>
             </div>
           </Col>
           <Col md="7" lg="8" sm="6" xs="6">

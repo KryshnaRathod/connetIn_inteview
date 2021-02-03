@@ -97,6 +97,8 @@
 }
 .comment-user-img {
   max-width: -webkit-fill-available;
+  border: 1px solid black;
+  border-radius: 50%;
 }
 
 @media screen and (max-width: 943px) {
