@@ -56,6 +56,10 @@ function PostCreationModal(props) {
           setLoader(false);
           if (res.authorizationSuccess) {
             if (res.successful) {
+              setPostText("");
+              setTagList([]);
+              setTag("");
+              setSelectedImg(null);
               console.log("Posted..");
               const payload = {
                 post: res,
