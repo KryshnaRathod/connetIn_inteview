@@ -6,6 +6,7 @@ import videoSrc from "./videos/video-2-main.mp4";
 import { useHistory } from "react-router-dom";
 import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
+import { SERVER_URL } from "../GlobalCommonData";
 
 function Login() {
   const dispatch = useDispatch();
@@ -15,10 +16,10 @@ function Login() {
   const history = useHistory();
   const handleSignUp = () => {
     console.log("here");
-    history.push("/signUp")
-  }
+    history.push("/signUp");
+  };
   const handleLogin = () => {
-    fetch("http://localhost:9999/login", {
+    fetch(`${SERVER_URL}login`, {
       method: "POST",
       body: JSON.stringify({ userName: userName, password: userPassword }),
       headers: {
@@ -29,8 +30,8 @@ function Login() {
       .then((res) => res.json())
       .then((res) => {
         if (res.loginSuccess) {
-          localStorage.setItem("authToken", res.authToken)
-          console.log('auth token '+res.authToken);
+          localStorage.setItem("authToken", res.authToken);
+          console.log("auth token " + res.authToken);
           const payload = {
             userId: res.newUser._id,
             userName: res.newUser.userName,
@@ -57,7 +58,7 @@ function Login() {
   };
   return (
     <div className="base-container">
-      <video src={videoSrc} autoPlay loop muted/>
+      <video src={videoSrc} autoPlay loop muted />
       <div className="leftHandSide">
         <div className="imageDiv">
           <img className="image" src={imgSrc} alt="" />
