@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { faImage } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import FileUpload from "./FileUpload";
 import { Input } from "reactstrap";
 import { useSelector } from "react-redux";
@@ -16,6 +14,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import { SERVER_URL } from "../GlobalCommonData";
+import RandomQuotes from "../Login/RandomQuotes";
 toast.configure();
 
 function PostCreationModal(props) {
@@ -26,6 +25,7 @@ function PostCreationModal(props) {
   const [tagList, setTagList] = useState([]);
   const [tagText, setTag] = useState("");
   const [selectedImg, setSelectedImg] = useState(null);
+
   const userData = useSelector((globalStore) => globalStore.users);
   //console.log(postList);
 
@@ -33,6 +33,7 @@ function PostCreationModal(props) {
     const postTextBuff = postText.trim();
     console.log(tagList);
     if (postTextBuff.length > 0) {
+      setLoader(true);
       const formData = new FormData();
       if (selectedImg !== null) {
         formData.append("file", selectedImg);
@@ -188,13 +189,16 @@ function PostCreationModal(props) {
               ) : (
                 <div className="loader-post-creation">
                   <Loader
-                    type="Grid"
+                    type="Plane"
                     color="grey"
                     height={100}
                     width={100}
                     //timeout={3000} //3 secs
                   />
-                  Posting..
+                  <br/>
+                  <b>Saving it to our Warehouse, Hold on!</b>
+                  <br/>
+                  <RandomQuotes fontSize="20px"/>
                 </div>
               )}
             </Col>

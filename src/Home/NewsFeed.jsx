@@ -7,7 +7,9 @@ import { postDataSlice } from "../Store/postDataSlice";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
-import {SERVER_URL} from '../GlobalCommonData';
+import { SERVER_URL } from "../GlobalCommonData";
+import Loader from "react-loader-spinner";
+import RandomQuotes from "../Login/RandomQuotes";
 
 toast.configure();
 
@@ -15,10 +17,12 @@ function NewsFeed() {
   const [postList, setPostList] = useState([]);
   const history = useHistory();
   const userData = useSelector((globalStore) => globalStore.users);
-  let loading = false;
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(2);
   const [initFlag, setInit] = useState(false);
+  const [bottomFlag, setBottomFlag] = useState(false);
+  const [allDataFetchedFlag, setDataFetchedFlag] = useState(false);
+  const [initLoadingSpinner, setSpinner] = useState(true);
   const [postSet, setPostSet] = useState({});
   let posts = useSelector((globalStore) => globalStore.posts);
   const dispatch = useDispatch();
@@ -43,6 +47,8 @@ function NewsFeed() {
       .then((res) => {
         if (res.authorizationSuccess) {
           if (res.responsePosts.length > 0) {
+            setSpinner(false);
+            setBottomFlag(false);
             setOffset((offset) => offset + limit);
             let tempPostList = [...postList];
             res.responsePosts.forEach((curIter) => {
@@ -67,11 +73,8 @@ function NewsFeed() {
             dispatch(postDataSlice.actions.addNewPostList(payload));
             setInit(true);
           } else {
+            setBottomFlag(true);
             console.log("You are all caught up..");
-            toast.info("You are Up to Date!", {
-              position: toast.POSITION.TOP_CENTER,
-              autoClose: 5 * 1000,
-            });
           }
         } else {
           toast.error("Session Expired, Please Login", {
@@ -88,9 +91,9 @@ function NewsFeed() {
   const onScrollEventHandler = (event) => {
     const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
     if (scrollHeight - scrollTop === clientHeight) {
-      loading = true;
       //setOffset(offset + limit);
       getPostsFromBackend();
+      setBottomFlag(true);
     }
   };
 
@@ -109,6 +112,17 @@ function NewsFeed() {
   useEffect(() => {
     getPostsFromBackend();
   }, [userData, initFlag]);
+
+  useEffect(() => {
+    if (bottomFlag) {
+      setTimeout(() => {
+        if (bottomFlag && postList.length > 0) {
+          setDataFetchedFlag(true);
+        }
+        console.log("inside settimeout");
+      }, 10 * 1000);
+    }
+  }, [bottomFlag]);
   return (
     <div className="fixed-container-news-feed">
       <div
@@ -127,6 +141,49 @@ function NewsFeed() {
             </div>
           );
         })}
+        {initLoadingSpinner && (
+          <div className="loader-cls">
+            <Loader
+              type="Circles"
+              color="rgba(173, 172, 172, 0.267)"
+              height={200}
+              width={200}
+            />
+            <p style={{ color: "white" }}>
+              Please wait, while we get some cool and informative stuff from our
+              Warehouse!
+            </p>
+          </div>
+        )}
+        {bottomFlag && (
+          <div>
+            {postList.length > 0 && (
+              <div>
+                {allDataFetchedFlag === false && bottomFlag === true && (
+                  <div className="loader-cls">
+                    <Loader
+                      type="Grid"
+                      color="rgba(228, 225, 225, 0.829)"
+                      height={100}
+                      width={100}
+                    />
+                  </div>
+                )}
+                <div className="bottom-text">
+                  <br />
+                  {allDataFetchedFlag === true && bottomFlag === true ? (
+                    <p className="bottom-text">
+                      For now you have consumed everything present in our
+                      Warehouse!
+                    </p>
+                  ) : (
+                    <RandomQuotes fontSize="19px" />
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

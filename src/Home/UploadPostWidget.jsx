@@ -18,7 +18,7 @@ function UploadPostWidget() {
         <Row>
           <Col md="2" lg="2" sm="2" xs="2">
             <div className="postPhotoDiv">
-            <span class="tooltiptext">{userData.userName}</span>
+            <span className="tooltiptext">{userData.userName}</span>
               {/*User Image Display as of now dummy display*/}
               <img
                 className="comment-user-img"

@@ -9,3 +9,13 @@
 .feed-container::-webkit-scrollbar {
   display: none;
 }
+.bottom-text {
+  color: white;
+  font-size: 25px;
+  text-align: center;
+  font-style: italic;
+}
+.loader-cls {
+  margin: auto;
+  text-align: center;
+}

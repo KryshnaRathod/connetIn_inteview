@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
 import { SERVER_URL } from "../GlobalCommonData";
+import { Container, Row, Col } from "react-bootstrap";
 
 function Login() {
   const dispatch = useDispatch();
@@ -59,59 +60,57 @@ function Login() {
   return (
     <div className="base-container">
       <video src={videoSrc} autoPlay loop muted />
-      <div className="leftHandSide">
-        <div className="imageDiv">
-          <img className="image" src={imgSrc} alt="" />
-        </div>
-        <div className="loginBox">
-          <div className="content">
-            <div className="form">
-              <div className="form-group">
-                <label className="labelClass">Username</label>
-                <input
-                  type="text"
-                  placeholder="Username"
-                  onChange={(evt) => {
-                    setErrorMsg("");
-                    setUserName(evt.target.value);
-                  }}
-                ></input>
+      <Container fluid>
+        <Row>
+          <Col>
+            <br />
+            <div className="loginBox">
+              <p className="heading-tag">ConnectIN</p>
+              <div className="content">
+                <div className="form">
+                  <div className="form-group">
+                    <label className="labelClass">Username</label>
+                    <input
+                      type="text"
+                      placeholder="Username"
+                      onChange={(evt) => {
+                        setErrorMsg("");
+                        setUserName(evt.target.value);
+                      }}
+                    ></input>
+                  </div>
+                </div>
+                <div className="form">
+                  <div className="form-group">
+                    <label className="labelClass">Password</label>
+                    <input
+                      type="password"
+                      placeholder="Password"
+                      onChange={(evt) => {
+                        setErrorMsg("");
+                        setPassword(evt.target.value);
+                      }}
+                    ></input>
+                  </div>
+                  <p className="errorMsg">{errorMsg}</p>
+                </div>
               </div>
-            </div>
-            <div className="form">
-              <div className="form-group">
-                <label className="labelClass">Password</label>
-                <input
-                  type="password"
-                  placeholder="Password"
-                  onChange={(evt) => {
-                    setErrorMsg("");
-                    setPassword(evt.target.value);
-                  }}
-                ></input>
+              <div className="btnDiv">
+                <button type="button" className="btn" onClick={handleLogin}>
+                  Login
+                </button>
+                <button type="button" className="btn" onClick={handleSignUp}>
+                  Sign Up
+                </button>
               </div>
-              <p className="errorMsg">{errorMsg}</p>
+              <br />
             </div>
-          </div>
-          <div className="btnDiv">
-            <button type="button" className="btn" onClick={handleLogin}>
-              Login
-            </button>
-            <button type="button" className="btn" onClick={handleSignUp}>
-              Sign Up
-            </button>
-          </div>
-          <div className="btnDiv">
-            <button type="button" className="gitBtn">
-              Sign in with Github<i className="fa fa-github"></i>
-            </button>
-          </div>
-          <br />
-        </div>
-      </div>
-      <div className="rightHandSide">
-        <RandomQuotes />
-      </div>
+          </Col>
+          <Col className="quote-class">
+            <RandomQuotes />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

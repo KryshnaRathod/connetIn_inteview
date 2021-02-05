@@ -24,7 +24,13 @@ function FileUpload(props) {
         autoClose: 5 * 1000,
       });
       setBigImgFlag(true);
-    } else {
+    }else if(curImg !== undefined && curImg.type !== "image/png" && curImg.type !== "image/jpeg" && curImg.type !== "image/jpg"){
+      toast.error("Only Images allowed!", {
+        position: toast.POSITION.TOP_CENTER,
+        autoClose: 5 * 1000,
+      });
+    } 
+    else {
       setBigImgFlag(false);
       props.setSelectedImg(event.target.files[0]);
       toast.info("Image Uploaded!", {

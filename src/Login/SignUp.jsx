@@ -16,6 +16,7 @@ import imgSrc from "./images/img-2.png";
 import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
 import { SERVER_URL } from "../GlobalCommonData";
+import { Container, Row, Col } from "react-bootstrap";
 
 function SignUp() {
   const history = useHistory();
@@ -154,213 +155,204 @@ function SignUp() {
   return (
     <div className="base-container">
       <video src={videoSrc} autoPlay loop />
-      <div className="leftHandSide">
-        <div className="imageDiv">
-          <img className="image" src={imgSrc} alt="" />
-        </div>
-        <div className="loginBox">
-          <div className="form-group">
-            <Form onSubmit={signUpHandler}>
-              <FormGroup>
-                <Label for="email" className="labelClass">
-                  Email Address
-                </Label>
-                <Input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.email = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                  required
-                  invalid={alreadyRegistered}
-                />
-                <FormFeedback>
-                  Eureka! We are already Connected, try Logging In
-                </FormFeedback>
-              </FormGroup>
-              <FormGroup>
-                <Label for="password" className="labelClass">
-                  Password
-                </Label>
-                <Input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.password = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="username" className="labelClass">
-                  User Name
-                </Label>
-                <Input
-                  type="text"
-                  name="username"
-                  placeholder="User Name"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.userName = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                  required
-                  valid={userNameAvailableFlag && connectionMadeFlag}
-                  invalid={!userNameAvailableFlag && connectionMadeFlag}
-                />
-                <FormFeedback valid>
-                  Sweet! that username is available
-                </FormFeedback>
-                <FormFeedback>Oh noes! that name is already taken</FormFeedback>
-                <div style={displayFlexCSS}>
-                  <Button
-                    className="checkBtn"
-                    color="link"
-                    size="sm"
-                    onClick={checkIfUserNamExists}
-                  >
-                    Check availablity
-                  </Button>
-                  <div style={marginAutoCSS}>
-                    {availableSpinnerFlag && (
-                      <Spinner
-                        animation="border"
-                        role="status"
-                        size="sm"
-                        variant="primary"
-                      >
-                        <span className="sr-only">Loading...</span>
-                      </Spinner>
-                    )}
-                  </div>
-                </div>
-              </FormGroup>
-              {/* <FormGroup>
-            <Label for="Github">GitHub Profile</Label>
-            <Input
-              type="text"
-              name="Github"
-              id="examplePassword"
-              placeholder="GitHub Profile"
-              onChange={(evt) => {
-                const curUser = { ...userData };
-                curUser.github = evt.target.value;
-                setUserData(curUser);
-              }}
-            />
-          </FormGroup> */}
-              <FormGroup>
-                <Label for="linkedIn" className="labelClass">
-                  Linked In Profile
-                </Label>
-                <Input
-                  type="text"
-                  name="linkedIn"
-                  placeholder="Linked In Profile"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.linkedIn = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="company" className="labelClass">
-                  Current Company
-                </Label>
-                <Input
-                  type="text"
-                  name="company"
-                  placeholder="Current Company"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.currentCompany = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                  required
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="Designation" className="labelClass">
-                  Designation
-                </Label>
-                <Input
-                  type="text"
-                  name="Designation"
-                  id="designation"
-                  placeholder="Designation at your current company"
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    curUser.designation = evt.target.value;
-                    setUserData(curUser);
-                    reset();
-                  }}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="skills/password" className="labelClass">
-                  Skills/Interests
-                </Label>
-                <div style={displayFlexCSS}>
-                  {userData.skills.map((item) => (
-                    <div className="tag-item" key={item}>
-                      {item}
-                      <button
-                        type="button"
-                        className="button"
-                        onClick={() => handleDelete(item)}
-                      >
-                        &times;
-                      </button>
-                    </div>
-                  ))}
-                </div>
-                <Input
-                  type="text"
-                  name="skills/password"
-                  placeholder="Things that you are passionate about.."
-                  onChange={(evt) => {
-                    const curUser = { ...userData };
-                    setUserData(curUser);
-                    setSkill(evt.target.value);
-                    reset();
-                  }}
-                  value={curSkill}
-                  onKeyDown={handleKeyDown}
-                  invalid={skillOverflowFlag || skillUnderflowFlag}
-                />
-                {skillUnderflowFlag && (
-                  <FormFeedback>
-                    Dont shy away from sharing some of your skills with us!
-                  </FormFeedback>
-                )}
-                {skillOverflowFlag && (
-                  <FormFeedback>
-                    Overwheling Curiosity! Not more than 4 are allowed!
-                  </FormFeedback>
-                )}
-              </FormGroup>
+      <Container fluid>
+        <Row>
+          <Col>
+          <br/>
+            <div className="loginBox">
+            <p className="heading-tag">ConnectIN</p>
               <div className="form-group">
-                <Button color="primary">Sign Up</Button>
+                <Form onSubmit={signUpHandler}>
+                  <FormGroup>
+                    <Label for="email" className="labelClass">
+                      Email Address
+                    </Label>
+                    <Input
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.email = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                      required
+                      invalid={alreadyRegistered}
+                    />
+                    <FormFeedback>
+                      Eureka! We are already Connected, try Logging In
+                    </FormFeedback>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="password" className="labelClass">
+                      Password
+                    </Label>
+                    <Input
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.password = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                      required
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="username" className="labelClass">
+                      User Name
+                    </Label>
+                    <Input
+                      type="text"
+                      name="username"
+                      placeholder="User Name"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.userName = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                      required
+                      valid={userNameAvailableFlag && connectionMadeFlag}
+                      invalid={!userNameAvailableFlag && connectionMadeFlag}
+                    />
+                    <FormFeedback valid>
+                      Sweet! that username is available
+                    </FormFeedback>
+                    <FormFeedback>
+                      Oh noes! that name is already taken
+                    </FormFeedback>
+                    <div style={displayFlexCSS}>
+                      <Button
+                        className="checkBtn"
+                        color="link"
+                        size="sm"
+                        onClick={checkIfUserNamExists}
+                      >
+                        Check availablity
+                      </Button>
+                      <div style={marginAutoCSS}>
+                        {availableSpinnerFlag && (
+                          <Spinner
+                            animation="border"
+                            role="status"
+                            size="sm"
+                            variant="primary"
+                          >
+                            <span className="sr-only">Loading...</span>
+                          </Spinner>
+                        )}
+                      </div>
+                    </div>
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="linkedIn" className="labelClass">
+                      Linked In Profile
+                    </Label>
+                    <Input
+                      type="text"
+                      name="linkedIn"
+                      placeholder="Linked In Profile"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.linkedIn = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="company" className="labelClass">
+                      Current Company
+                    </Label>
+                    <Input
+                      type="text"
+                      name="company"
+                      placeholder="Current Company"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.currentCompany = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                      required
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="Designation" className="labelClass">
+                      Designation
+                    </Label>
+                    <Input
+                      type="text"
+                      name="Designation"
+                      id="designation"
+                      placeholder="Designation at your current company"
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        curUser.designation = evt.target.value;
+                        setUserData(curUser);
+                        reset();
+                      }}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label for="skills/password" className="labelClass">
+                      Skills/Interests
+                    </Label>
+                    <div style={displayFlexCSS}>
+                      {userData.skills.map((item) => (
+                        <div className="tag-item" key={item}>
+                          {item}
+                          <button
+                            type="button"
+                            className="button"
+                            onClick={() => handleDelete(item)}
+                          >
+                            &times;
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                    <Input
+                      type="text"
+                      name="skills/password"
+                      placeholder="Things that you are passionate about.."
+                      onChange={(evt) => {
+                        const curUser = { ...userData };
+                        setUserData(curUser);
+                        setSkill(evt.target.value);
+                        reset();
+                      }}
+                      value={curSkill}
+                      onKeyDown={handleKeyDown}
+                      invalid={skillOverflowFlag || skillUnderflowFlag}
+                    />
+                    {skillUnderflowFlag && (
+                      <FormFeedback>
+                        Dont shy away from sharing some of your skills with us!
+                      </FormFeedback>
+                    )}
+                    {skillOverflowFlag && (
+                      <FormFeedback>
+                        Overwheling Curiosity! Not more than 4 are allowed!
+                      </FormFeedback>
+                    )}
+                  </FormGroup>
+                  <div className="form-group">
+                    <Button color="primary">Sign Up</Button>
+                  </div>
+                </Form>
               </div>
-            </Form>
-          </div>
-        </div>
-      </div>
-      <div className="rightHandSide">
-        <RandomQuotes />
-      </div>
+            </div>
+          </Col>
+          <Col className="quote-class">
+            <RandomQuotes />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }

@@ -1,33 +1,15 @@
-.leftHandSide {
-  width: 100%;
-  display: table;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  height: 1024px;
-}
-.leftHandSide {
-  border-right: 2px;
-  position: absolute;
-  left: 0px;
-  width: 50%;
-  top: 0px;
-}
+
 .loginBox {
   margin: 10px;
   width: 40%;
-  margin-left: 10%;
   border: 1px solid grey;
   opacity: 1;
   min-width: 300px;
+  background-color: #180c0c85;
+  margin: auto;
+  margin-left: 7%;
 }
-.rightHandSide {
-  position: relative;
-  margin-top: 10%;
-  left: 45%;
-  right: 0px;
-  width: 50%;
-}
+
 .header {
   font-size: 24px;
   color: white;
@@ -76,20 +58,8 @@ label {
 }
 .imageDiv {
   width: 40%;
-  margin-top: 3%;
-  margin-left: 23%;
-}
-.gitBtn {
-  margin-top: 10px;
-  margin-left: 2%;
-  background-color: white;
-}
-.gitBtn:hover {
-  background-color: grey;
-}
-.fa-github {
-  padding-left: 2px;
-  font-size: 20px;
+  margin: auto;
+  margin-left: 7%;
 }
 .content {
   height: 100%;
@@ -174,11 +144,6 @@ label {
   font-weight: bold;
   margin-top: 1em;
 }
-/* @media screen and (max-width: 1000px){
-    ..blockquote:before {
-        background-color: black;
-    }
-} */
 .errorMsg {
   color: red;
 }
@@ -228,4 +193,30 @@ label {
 .checkBtn {
   border: none; 
   outline: none; 
+}
+
+.heading-tag {
+  color: white;
+  font-size: 40px;
+  margin: auto;
+  text-align: center;
+}
+@media screen and (max-width: 995px){
+  .loginBox {
+    margin: auto;
+  }
+  .quote-class {
+    display: none;
+  }
+}
+@media screen and (max-width: 840px){
+  .quote-class {
+    display: none;
+  }
+  .imageDiv {
+    margin: auto !important;
+  }
+  .loginBox {
+    margin: auto;
+  }
 }

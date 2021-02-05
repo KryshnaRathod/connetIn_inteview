@@ -18,7 +18,9 @@ const quotes = [
     {
         name: "In some ways, programming is like painting. You start with a blank canvas and certain basic raw materials. You use a combination of science, art, and craft to determine what to do with them.",
     },
-    
+    {
+        name: "Don’t let your learning lead to knowledge. Let your learning lead to action.",
+    },
 ]
 // console.log(data)
 exports.quotes = quotes
