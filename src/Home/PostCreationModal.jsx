@@ -149,7 +149,7 @@ function PostCreationModal(props) {
                 <div>
                   <Input
                     type="textarea"
-                    placeholder="Share your Thoughts"
+                    placeholder={props.modalText}
                     rows={5}
                     value={postText}
                     onChange={(evt) => setPostText(evt.target.value)}
@@ -183,7 +183,9 @@ function PostCreationModal(props) {
                     onKeyDown={handleKeyDown}
                   />
                   <div>
-                    <FileUpload setSelectedImg={setSelectedImg} />
+                    {props.imgUploadOption && (
+                      <FileUpload setSelectedImg={setSelectedImg} />
+                    )}
                   </div>
                 </div>
               ) : (
@@ -195,10 +197,10 @@ function PostCreationModal(props) {
                     width={100}
                     //timeout={3000} //3 secs
                   />
-                  <br/>
+                  <br />
                   <b>Saving it to our Warehouse, Hold on!</b>
-                  <br/>
-                  <RandomQuotes fontSize="20px"/>
+                  <br />
+                  <RandomQuotes fontSize="20px" />
                 </div>
               )}
             </Col>

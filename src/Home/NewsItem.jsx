@@ -11,9 +11,10 @@ function NewsItem(props) {
           <label className="news-item">Headline</label>
           <p>{props.curNews.description}</p>
           <label className="news-item">Source</label>
-            <a className="url-cls" href={props.curNews.url} target="_blank">
-              {props.curNews.url}
-            </a>
+          <a className="url-cls" href={props.curNews.url} target="_blank">
+            {props.curNews.url}
+          </a>
+          <br />
         </div>
       }
     </div>

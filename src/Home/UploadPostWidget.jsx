@@ -8,9 +8,10 @@ import { faVideo } from "@fortawesome/free-solid-svg-icons";
 import PostCreationModal from "./PostCreationModal";
 import { useSelector } from "react-redux";
 
-
 function UploadPostWidget() {
   const [modalShow, setModalShow] = useState(false);
+  const [modalText, setModalText] = useState("");
+  const [imgUploadOption, setImgUploadOptionFlag] = useState(true);
   const userData = useSelector((globalStore) => globalStore.users);
   return (
     <div className="post-container">
@@ -18,7 +19,7 @@ function UploadPostWidget() {
         <Row>
           <Col md="2" lg="2" sm="2" xs="2">
             <div className="postPhotoDiv">
-            <span className="tooltiptext">{userData.userName}</span>
+              <span className="tooltiptext">{userData.userName}</span>
               {/*User Image Display as of now dummy display*/}
               <img
                 className="comment-user-img"
@@ -28,7 +29,14 @@ function UploadPostWidget() {
             </div>
           </Col>
           <Col md="10" lg="10" sm="10" xs="10">
-            <div className="postDiv" onClick={() => setModalShow(true)}>
+            <div
+              className="postDiv"
+              onClick={() => {
+                setModalShow(true);
+                setImgUploadOptionFlag(true);
+                setModalText("Share some meaningful information for peer learning!")
+              }}
+            >
               <p className="post-share">
                 Would you mind sharing your Knowledge!
               </p>
@@ -36,24 +44,45 @@ function UploadPostWidget() {
           </Col>
         </Row>
       </Container>
-      <br/>
+      <br />
       <div className="box">
         <Container>
           <Row>
             <Col sm="4" xs="4">
-              <div className="icon-item" onClick={() => setModalShow(true)}>
+              <div
+                className="icon-item"
+                onClick={() => {
+                  setModalText("Brief about this image would be useful for understanding the context!")
+                  setModalShow(true);
+                  setImgUploadOptionFlag(true);
+                }}
+              >
                 <FontAwesomeIcon icon={faImage} />
                 <h5 className="icon-grp">Images</h5>
               </div>
             </Col>
             <Col sm="4" xs="4">
-              <div className="icon-item" onClick={() => setModalShow(true)}>
+              <div
+                className="icon-item"
+                onClick={() => {
+                  setModalShow(true);
+                  setImgUploadOptionFlag(false);
+                  setModalText("Pen down and Share your instinct about something really cool!")
+                }}
+              >
                 <FontAwesomeIcon icon={faNewspaper} />
                 <h5 className="icon-grp">Write Article</h5>
               </div>
             </Col>
             <Col sm="4" xs="4">
-              <div className="icon-item" onClick={() => setModalShow(true)}>
+              <div
+                className="icon-item"
+                onClick={() => {
+                  setModalShow(true);
+                  setImgUploadOptionFlag(true);
+                  setModalText("Share some meaningful information for peer learning!")
+                }}
+              >
                 <FontAwesomeIcon icon={faVideo} />
                 <h5 className="icon-grp">Tutorial</h5>
               </div>
@@ -63,6 +92,8 @@ function UploadPostWidget() {
         <PostCreationModal
           show={modalShow}
           onHide={() => setModalShow(false)}
+          imgUploadOption={imgUploadOption}
+          modalText={modalText}
         />
       </div>
     </div>

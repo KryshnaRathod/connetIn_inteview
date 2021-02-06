@@ -32,14 +32,9 @@
 .labelClass {
   color: white;
 }
-.btnDiv {
-  margin-left: 27%;
-}
-.btnDiv .btn {
-  position: relative;
-  margin-left: 4%;
-  border: 1px solid white;
-  background-color: white;
+
+.btn-left {
+  float: right;
 }
 input {
   height: 37px;

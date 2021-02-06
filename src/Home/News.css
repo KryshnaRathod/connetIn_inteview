@@ -1,5 +1,5 @@
 .news-container {
-  background-color: rgb(24,25,26);
+  background-color: rgb(24, 25, 26);
   position: fixed;
   height: 100vh;
   width: auto;
@@ -9,10 +9,11 @@
   width: auto !important;
   margin-left: 2% !important;
   margin-right: 3% !important;
-  height: 50vh;
+  height: auto;
   margin-top: 10% !important;
-  border-radius: 50px;
+  border-radius: 20px;
   background-color: lavender;
+  max-width: 30vw;
 }
 .heading-news {
   text-align: center;

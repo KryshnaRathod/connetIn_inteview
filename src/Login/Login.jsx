@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
 import { SERVER_URL } from "../GlobalCommonData";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
@@ -64,6 +64,9 @@ function Login() {
         }
       });
   };
+  const handleForgotPW = async () => {
+    history.push("/forgotPassword")
+  }
   return (
     <div className="base-container">
       <video src={videoSrc} autoPlay loop muted />
@@ -103,24 +106,31 @@ function Login() {
                   <p className="errorMsg">{errorMsg}</p>
                 </div>
               </div>
-              <div className="btnDiv">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={handleLogin}
-                  disabled={spinnerFlag}
-                >
-                  Login
-                </button>
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={handleSignUp}
-                  disabled={spinnerFlag}
-                >
-                  Sign Up
-                </button>
-              </div>
+              <Container fluid>
+                <Row>
+                  <Col>
+                    <Button
+                      type="button"
+                      className="btn-left"
+                      variant="light"
+                      onClick={handleLogin}
+                      disabled={spinnerFlag}
+                    >
+                      Login
+                    </Button>
+                  </Col>
+                  <Col>
+                    <Button
+                      type="button"
+                      variant="light"
+                      onClick={handleSignUp}
+                      disabled={spinnerFlag}
+                    >
+                      Sign Up
+                    </Button>
+                  </Col>
+                </Row>
+              </Container>
               {spinnerFlag && (
                 <div>
                   <br />
@@ -132,6 +142,17 @@ function Login() {
                   </p>
                 </div>
               )}
+              <div style={{ textAlign: "center" }}>
+                <br />
+                <Button
+                  type="button"
+                  variant="light"
+                  onClick={handleForgotPW}
+                  disabled={spinnerFlag}
+                >
+                  Forgot Password?
+                </Button>
+              </div>
               <br />
             </div>
           </Col>
