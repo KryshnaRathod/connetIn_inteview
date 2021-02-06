@@ -78,4 +78,9 @@
     .icon-grp {
         display: none;
     }
+    .post-share {
+        width: auto;
+        margin: auto;
+        text-align: center;
+    }
 }

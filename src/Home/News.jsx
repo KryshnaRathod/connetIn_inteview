@@ -15,7 +15,7 @@ function News() {
   const userData = useSelector((store) => store.users);
   //console.log(userData.skills[0]);
   const getNews = () => {
-    let newsApiUrl = `http://newsapi.org/v2/everything?`;
+    let newsApiUrl = `https://newsapi.org/v2/everything?`;
     if (userData.length > 0  && userData.skills.length > 0) {
       userData.skills.forEach(skill => {
         newsApiUrl += `q=${skill}&`

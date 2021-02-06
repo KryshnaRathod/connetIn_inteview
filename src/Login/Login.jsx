@@ -9,10 +9,14 @@ import { useDispatch } from "react-redux";
 import { SERVER_URL } from "../GlobalCommonData";
 import { Container, Row, Col } from "react-bootstrap";
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
+
 function Login() {
   const dispatch = useDispatch();
   const [userName, setUserName] = useState("");
   const [userPassword, setPassword] = useState("");
+  const [spinnerFlag, setSpinnerFlag] = useState(false);
   let [errorMsg, setErrorMsg] = useState("");
   const history = useHistory();
   const handleSignUp = () => {
@@ -20,6 +24,7 @@ function Login() {
     history.push("/signUp");
   };
   const handleLogin = () => {
+    setSpinnerFlag(true);
     fetch(`${SERVER_URL}login`, {
       method: "POST",
       body: JSON.stringify({ userName: userName, password: userPassword }),
@@ -31,6 +36,7 @@ function Login() {
       .then((res) => res.json())
       .then((res) => {
         if (res.loginSuccess) {
+          setSpinnerFlag(false);
           localStorage.setItem("authToken", res.authToken);
           console.log("auth token " + res.authToken);
           const payload = {
@@ -52,6 +58,7 @@ function Login() {
           setErrorMsg("");
         } else {
           //history.push("/home/1")
+          setSpinnerFlag(false);
           setErrorMsg(res.errorMsg);
           console.log(res.errorMsg);
         }
@@ -90,19 +97,41 @@ function Login() {
                         setErrorMsg("");
                         setPassword(evt.target.value);
                       }}
+                      disabled={spinnerFlag}
                     ></input>
                   </div>
                   <p className="errorMsg">{errorMsg}</p>
                 </div>
               </div>
               <div className="btnDiv">
-                <button type="button" className="btn" onClick={handleLogin}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleLogin}
+                  disabled={spinnerFlag}
+                >
                   Login
                 </button>
-                <button type="button" className="btn" onClick={handleSignUp}>
+                <button
+                  type="button"
+                  className="btn"
+                  onClick={handleSignUp}
+                  disabled={spinnerFlag}
+                >
                   Sign Up
                 </button>
               </div>
+              {spinnerFlag && (
+                <div>
+                  <br />
+                  <div style={{ textAlign: "center" }}>
+                    <Loader type="Oval" color="grey" height={50} width={50} />
+                  </div>
+                  <p style={{ color: "white", textAlign: "center" }}>
+                    Logging IN
+                  </p>
+                </div>
+              )}
               <br />
             </div>
           </Col>

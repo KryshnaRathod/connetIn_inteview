@@ -43,11 +43,11 @@
   background-color: lawngreen;
 }
 .grp {
-    display: flex;
+  display: flex;
 }
 .post-user {
-    margin-top: 2.5vh;
-    -webkit-text-stroke-width: thick;
+  margin-top: 2.5vh;
+  -webkit-text-stroke-width: thick;
 }
 .icon-grp-post-liked {
   background-color: rgb(160, 156, 156);
@@ -74,7 +74,7 @@
   color: #fff;
   text-align: center;
   padding: 5px 0;
-  border-radius: 6px; 
+  border-radius: 6px;
   position: absolute;
   margin-top: 50px;
   z-index: 1;
@@ -104,30 +104,35 @@
 @media screen and (max-width: 943px) {
   .post-user {
     margin-left: 5vw;
-    -webkit-text-stroke-width: thick;
-}
+  }
 }
 @media screen and (max-width: 498px) {
   .post-user {
-      margin-left: 5vw;
-      -webkit-text-stroke-width: thick;
+    margin-left: 5vw;
   }
   .user-profile-picture-comment {
     margin-right: 50px;
   }
+  .text-post {
+    margin-left: 2.5vw;
+  }
 }
 @media screen and (max-width: 396px) {
-    .post-user {
-        margin-left: 10vw;
-        -webkit-text-stroke-width: thick;
-    }
-    .user-profile-picture-comment {
-      margin-right: 50px;
-    }
+  .post-user {
+    margin-left: 10vw;
+  }
+  .user-profile-picture-comment {
+    margin-right: 50px;
+  }
+  .text-post {
+    margin-left: 2.5vw;
+  }
 }
 @media screen and (max-width: 325px) {
-    .post-user {
-        margin-left: 15vw;
-        -webkit-text-stroke-width: thick;
-    }
+  .post-user {
+    margin-left: 15vw;
+  }
+  .text-post {
+    margin-left: 2.5vw;
+  }
 }

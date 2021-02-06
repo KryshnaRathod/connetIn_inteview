@@ -17,6 +17,8 @@ import { userDataSlice } from "../Store/userDataSlice";
 import { useDispatch } from "react-redux";
 import { SERVER_URL } from "../GlobalCommonData";
 import { Container, Row, Col } from "react-bootstrap";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Loader from "react-loader-spinner";
 
 function SignUp() {
   const history = useHistory();
@@ -27,6 +29,8 @@ function SignUp() {
   let [skillOverflowFlag, setSkillOverflowFlag] = useState(false);
   let [skillUnderflowFlag, setSkillUnderflowFlag] = useState(false);
   let [alreadyRegistered, setAlreadyRegistered] = useState(false);
+  const [spinnerFlag, setSpinnerFlag] = useState(false);
+  const [errMsg, setErrorMsg] = useState("");
 
   let [curSkill, setSkill] = useState("");
   let [userData, setUserData] = useState({
@@ -57,7 +61,7 @@ function SignUp() {
   const signUpHandler = (evt) => {
     evt.preventDefault();
     if (userData.skills.length > 0) {
-      console.log(userData.currentCompany);
+      setSpinnerFlag(true);
       fetch(`${SERVER_URL}signUp`, {
         method: "POST",
         body: JSON.stringify({
@@ -95,10 +99,13 @@ function SignUp() {
             };
             dispatch(userDataSlice.actions.addUserData(payload));
             history.push("/");
+            setSpinnerFlag(false);
             // setUserEmail(userEmail);
           } else {
             //history.push("/");
             setAlreadyRegistered(true);
+            setSpinnerFlag(false);
+            setErrorMsg(res.errorMsg)
             console.log("No able to sign in", res.errorMsg);
           }
         });
@@ -158,9 +165,9 @@ function SignUp() {
       <Container fluid>
         <Row>
           <Col>
-          <br/>
+            <br />
             <div className="loginBox">
-            <p className="heading-tag">ConnectIN</p>
+              <p className="heading-tag">ConnectIN</p>
               <div className="form-group">
                 <Form onSubmit={signUpHandler}>
                   <FormGroup>
@@ -181,7 +188,7 @@ function SignUp() {
                       invalid={alreadyRegistered}
                     />
                     <FormFeedback>
-                      Eureka! We are already Connected, try Logging In
+                      {errMsg}
                     </FormFeedback>
                   </FormGroup>
                   <FormGroup>
@@ -343,6 +350,22 @@ function SignUp() {
                   </FormGroup>
                   <div className="form-group">
                     <Button color="primary">Sign Up</Button>
+                    {spinnerFlag && (
+                      <div>
+                        <br/>
+                        <div style={{ textAlign: "center" }}>
+                          <Loader
+                            type="Oval"
+                            color="grey"
+                            height={50}
+                            width={50}
+                          />
+                        </div>
+                        <p style={{ color: "white", textAlign: "center" }}>
+                          Signing UP
+                        </p>
+                      </div>
+                    )}
                   </div>
                 </Form>
               </div>
