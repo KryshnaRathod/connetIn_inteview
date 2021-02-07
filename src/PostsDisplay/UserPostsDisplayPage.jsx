@@ -38,7 +38,7 @@ function UserPostsDisplayPage() {
     (value) => {
       if (value) {
         setModalShow(true);
-        const url = `${SERVER_URL}getSearchResults?searchVal=${value}`;
+        const url = `${SERVER_URL}home/getSearchResults?searchVal=${value}`;
         fetch(url, { credentials: "include" })
           .then((res) => res.json())
           .then((res) => {

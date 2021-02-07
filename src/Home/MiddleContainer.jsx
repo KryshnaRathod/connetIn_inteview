@@ -7,7 +7,6 @@ import UploadPostWidget from "./UploadPostWidget";
 import NewsFeed from "./NewsFeed";
 import SearchbarModal from "./SearchbarModal";
 import { useDebouncedCallback } from "use-debounce";
-import UserPostDisplayPage from "../PostsDisplay/UserPostsDisplayPage"
 import { SERVER_URL } from "../GlobalCommonData";
 
 function MiddleContainer() {
@@ -38,7 +37,7 @@ function MiddleContainer() {
     (value) => {
       if (value) {
         setModalShow(true);
-        const url = `${SERVER_URL}getSearchResults?searchVal=${value}`;
+        const url = `${SERVER_URL}home/getSearchResults?searchVal=${value}`;
         fetch(url, { credentials: "include" })
           .then((res) => res.json())
           .then((res) => {

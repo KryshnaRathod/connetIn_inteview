@@ -47,7 +47,7 @@ function Post(props) {
 
   const handleLikeClick = () => {
     setAlreadyLiked(!alreadyLiked);
-    fetch(`${SERVER_URL}markLikedOrUnliked`, {
+    fetch(`${SERVER_URL}home/markLikedOrUnliked`, {
       method: "POST",
       body: JSON.stringify({
         userId: userData.userId,
@@ -88,7 +88,7 @@ function Post(props) {
 
   const handlePostComment = () => {
     setLoader(true);
-    fetch(`${SERVER_URL}postComment`, {
+    fetch(`${SERVER_URL}home/postComment`, {
       method: "POST",
       body: JSON.stringify({
         userId: userData.userId,

@@ -19,7 +19,7 @@ function UserPostDisplay(props) {
   const [initFlag, setInit] = useState(true);
 
   const getPostsFromBackend = () => {
-    let url = `${SERVER_URL}getUsersPost/?limit=${limit}&offset=${offset}&`;
+    let url = `${SERVER_URL}posts/getUsersPost/?limit=${limit}&offset=${offset}&`;
     //console.log(userData);
     userData.posts.forEach((postId) => {
       url += `postIds=${postId}&`;

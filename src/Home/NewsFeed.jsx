@@ -41,7 +41,7 @@ function NewsFeed() {
       "Content-Type": "application/json",
       authToken: localStorage.getItem("authToken"),
     };
-    const url = `${SERVER_URL}getPosts/?limit=${limit}&offset=${offset}&userId=${userData.userId}`;
+    const url = `${SERVER_URL}home/getPosts/?limit=${limit}&offset=${offset}&userId=${userData.userId}`;
     fetch(url, { headers: headers, credentials: "include" })
       .then((res) => res.json())
       .then((res) => {

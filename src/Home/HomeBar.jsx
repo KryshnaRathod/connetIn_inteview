@@ -21,7 +21,7 @@ function HomeBar() {
     history.push(`/${selectedOption}/${userInfo.userId}`);
   };
   const handleLogOut = () => {
-    fetch(`${SERVER_URL}logOut`, { credentials: "include" })
+    fetch(`${SERVER_URL}home/logOut`, { credentials: "include" })
       .then((r) => r.json())
       .then((r) => {
         console.log("logged out..");

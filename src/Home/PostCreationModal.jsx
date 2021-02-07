@@ -31,7 +31,6 @@ function PostCreationModal(props) {
 
   const handlePost = () => {
     const postTextBuff = postText.trim();
-    console.log(tagList);
     if (postTextBuff.length > 0) {
       setLoader(true);
       const formData = new FormData();
@@ -46,7 +45,7 @@ function PostCreationModal(props) {
       const headers = {
         authToken: localStorage.getItem("authToken"),
       };
-      fetch(`${SERVER_URL}savePost`, {
+      fetch(`${SERVER_URL}home/savePost`, {
         method: "POST",
         headers: headers,
         body: formData,
