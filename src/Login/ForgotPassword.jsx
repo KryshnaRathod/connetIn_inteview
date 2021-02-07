@@ -11,6 +11,7 @@ import Loader from "react-loader-spinner";
 function ForgotPassword() {
   const [userEmail, setEmail] = useState("");
   const [errMsg, setErrorMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
   const [spinnerFlag, setSpinnerFlag] = useState(false);
   function validateEmail(email) {
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -24,12 +25,12 @@ function ForgotPassword() {
           .post(`${SERVER_URL}forgotPassword`, {
             userEmail: userEmail,
           })
-          .then(res => JSON.parse(res.request.responseText))
+          .then((res) => JSON.parse(res.request.responseText))
           .then((res) => {
             setSpinnerFlag(false);
             if (res.success) {
               if (res.userPresent) {
-                  
+                setSuccessMsg("Mail sent!, Check you Inbox.");
               } else {
                 setErrorMsg(
                   "User Email not registered with us, Either check the email or Sign Up!"
@@ -69,11 +70,13 @@ function ForgotPassword() {
                       placeholder="User Email"
                       onChange={(evt) => {
                         setErrorMsg("");
+                        setSuccessMsg("");
                         setEmail(evt.target.value);
                         setErrorMsg("");
                       }}
                     ></input>
                     <p className="errorMsg">{errMsg}</p>
+                    <p style={{ color: "green" }}>{successMsg}</p>
                   </div>
                 </div>
               </div>

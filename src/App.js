@@ -21,7 +21,7 @@ import ForgotPassword from "./Login/ForgotPassword";
 function App() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const params = useParams();
+  const urlFromMail = history.location.pathname;
   const getUserDataIfLoggedIn = () => {
     const url = `${SERVER_URL}getUserData`;
     fetch(url, { credentials: "include" })
@@ -50,7 +50,9 @@ function App() {
       });
   };
   useEffect(() => {
-    getUserDataIfLoggedIn();
+    if (urlFromMail.indexOf("/reset/") === -1) {
+      getUserDataIfLoggedIn();
+    }
   }, []);
   return (
     <div className="main-div">
