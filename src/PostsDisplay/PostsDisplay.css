@@ -112,7 +112,10 @@
 .comment-user-img {
   max-width: -webkit-fill-available;
 }
-
+.loader-cls {
+  margin: auto;
+  text-align: center;
+}
 @media screen and (max-width: 1130px) {
   
 }

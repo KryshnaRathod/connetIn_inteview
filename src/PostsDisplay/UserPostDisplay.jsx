@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import { SERVER_URL } from "../GlobalCommonData";
 import RandomQuotes from "../Login/RandomQuotes";
+import Loader from "react-loader-spinner";
 
 toast.configure();
 
@@ -18,6 +19,7 @@ function UserPostDisplay(props) {
   const [loading, setLoading] = useState(false);
   const [displayPosts, setDisplayPosts] = useState([]);
   const [initFlag, setInit] = useState(true);
+  const [initLoadingSpinner, setSpinner] = useState(true);
 
   const getPostsFromBackend = () => {
     let url = `${SERVER_URL}posts/getUsersPost/?limit=${limit}&offset=${offset}&`;
@@ -34,6 +36,7 @@ function UserPostDisplay(props) {
     fetch(url, { headers: headers, credentials: "include" })
       .then((res) => res.json())
       .then((res) => {
+        setSpinner(false);
         if (res.authorizationSuccess) {
           if (res.responsePosts.length > 0) {
             setOffset(offset + limit);
@@ -110,6 +113,20 @@ function UserPostDisplay(props) {
           </div>
         )}
       </div>
+      {initLoadingSpinner && (
+        <div className="loader-cls">
+          <Loader
+            type="Circles"
+            color="rgba(173, 172, 172, 0.267)"
+            height={200}
+            width={200}
+          />
+          <p style={{ color: "white" }}>
+            Please wait, while we get your Posts from our
+            Warehouse!
+          </p>
+        </div>
+      )}
     </div>
   );
 }
