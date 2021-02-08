@@ -17,6 +17,7 @@ function HomeBar() {
   const userInfo = useSelector((globalStore) => globalStore.users);
   const [smallScr, setSmallScreen] = useState(false);
   const history = useHistory();
+
   const handleHomeBarClick = (selectedOption) => {
     history.push(`/${selectedOption}/${userInfo.userId}`);
   };

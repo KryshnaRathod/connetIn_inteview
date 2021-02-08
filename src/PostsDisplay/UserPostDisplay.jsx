@@ -5,7 +5,8 @@ import UserPost from "./UserPost";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
-import {SERVER_URL} from '../GlobalCommonData';
+import { SERVER_URL } from "../GlobalCommonData";
+import RandomQuotes from "../Login/RandomQuotes";
 
 toast.configure();
 
@@ -79,17 +80,35 @@ function UserPostDisplay(props) {
         className="feed-container"
         onScroll={(event) => onScrollEventHandler(event)}
       >
-        {displayPosts.map((curIter, index) => {
-          return (
-            <div key={index} className="feed">
-              <UserPost
-                post={curIter.post}
-                imagesRelatedToPost={curIter.imagesRelatedToPosts}
-              />
-              <br />
-            </div>
-          );
-        })}
+        {displayPosts.length > 0 ? (
+          displayPosts.map((curIter, index) => {
+            return (
+              <div key={index} className="feed">
+                <UserPost
+                  post={curIter.post}
+                  imagesRelatedToPost={curIter.imagesRelatedToPosts}
+                />
+                <br />
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            <p
+              style={{
+                fontFamily: "monospace",
+                color: "white",
+                margin: "auto",
+                textAlign: "center",
+                fontSize: "30px",
+              }}
+            >
+              In vain have you acquired knowledge if you have not imparted it to
+              others. Start Posting!
+            </p>
+            <RandomQuotes fontSize="19px" />
+          </div>
+        )}
       </div>
     </div>
   );

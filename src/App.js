@@ -17,6 +17,8 @@ import { userDataSlice } from "./Store/userDataSlice";
 import { SERVER_URL } from "./GlobalCommonData";
 import PasswordResetComponent from "./Login/PasswordResetComponent";
 import ForgotPassword from "./Login/ForgotPassword";
+import NotificationPage from './Notifications/NotificationPage';
+import NetworkContainer from './Network/NetworkContainer';
 
 function App() {
   const history = useHistory();
@@ -60,6 +62,9 @@ function App() {
         <Route path="/forgotPassword">
           <ForgotPassword />
         </Route>
+        <Route path="/network/:userId">
+          <NetworkContainer />
+        </Route>
         <Route path="/reset/:validToken">
           <PasswordResetComponent />
         </Route>
@@ -68,6 +73,9 @@ function App() {
         </Route>
         <Route path="/posts/:userId">
           <MainPostPage />
+        </Route>
+        <Route path="/notifications/:userId">
+          <NotificationPage />
         </Route>
         <Route path="/home/:userId">
           <Home />

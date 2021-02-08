@@ -1,11 +1,11 @@
-import React from "react";
-import "./Home.css";
-import HomeBar from "./HomeBar";
-import MiddleContainer from "./MiddleContainer";
-import News from "./News";
+import React, { Component } from "react";
+import "../Home/Home.css";
+import HomeBar from "../Home/HomeBar";
+import NetworkMiddleContainer from "./NetworkMiddleContainer";
+import News from "../Home/News";
 import { Container, Row, Col } from "react-bootstrap";
 
-function Home() {
+function NetworkContainer() {
   return (
     <>
       <Container fluid>
@@ -14,7 +14,7 @@ function Home() {
             <HomeBar />
           </Col>
           <Col md="6" lg="6" sm="10" xs="10">
-            <MiddleContainer />
+            <NetworkMiddleContainer />
           </Col>
           <Col md="4" lg="4" sm="0" xs="0">
             <div className="news">
@@ -27,4 +27,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default NetworkContainer;

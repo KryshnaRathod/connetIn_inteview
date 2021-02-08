@@ -129,18 +129,36 @@ function NewsFeed() {
         className="feed-container"
         onScroll={(event) => onScrollEventHandler(event)}
       >
-        {postList.map((curIter, index) => {
-          return (
-            <div key={curIter.post._id} className="feed">
-              <Post
-                post={curIter.post}
-                alreadyLiked={curIter.liked}
-                imagesRelatedToPost={curIter.imagesRelatedToPosts}
-              />
-              <br />
-            </div>
-          );
-        })}
+        {postList.length > 0 ? (
+          postList.map((curIter, index) => {
+            return (
+              <div key={curIter.post._id} className="feed">
+                <Post
+                  post={curIter.post}
+                  alreadyLiked={curIter.liked}
+                  imagesRelatedToPost={curIter.imagesRelatedToPosts}
+                />
+                <br />
+              </div>
+            );
+          })
+        ) : (
+          <div>
+            <p
+              style={{
+                fontFamily: "monospace",
+                color: "white",
+                margin: "auto",
+                textAlign: "center",
+                fontSize: "30px",
+              }}
+            >
+              Be willing to be a beginner every single morning. Be the initiator
+              and start posting!
+            </p>
+            <RandomQuotes fontSize="19px" />
+          </div>
+        )}
         {initLoadingSpinner && (
           <div className="loader-cls">
             <Loader
