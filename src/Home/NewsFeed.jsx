@@ -46,8 +46,8 @@ function NewsFeed() {
       .then((res) => res.json())
       .then((res) => {
         if (res.authorizationSuccess) {
+          setSpinner(false);
           if (res.responsePosts.length > 0) {
-            setSpinner(false);
             setBottomFlag(false);
             setOffset((offset) => offset + limit);
             let tempPostList = [...postList];

@@ -21,6 +21,8 @@ function RandomQuotes(props) {
           fontSize: `${props.fontSize !== undefined ? props.fontSize : ""}`,
           borderTop: "3px solid #bf0024",
           fontFamily: "FontAwesome",
+          color: "white",
+          textAlign: "center",
         }
       : {
           fontSize: `${props.fontSize !== undefined ? props.fontSize : ""}`,
