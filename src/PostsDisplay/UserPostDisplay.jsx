@@ -7,7 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { useHistory } from "react-router-dom";
 import { SERVER_URL } from "../GlobalCommonData";
 import RandomQuotes from "../Login/RandomQuotes";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
+
 
 toast.configure();
 
