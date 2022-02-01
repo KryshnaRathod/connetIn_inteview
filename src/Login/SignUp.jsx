@@ -127,7 +127,8 @@ function SignUp() {
     }
   };
   const handleDelete = (item) => {
-    const newSkillArr = userData.skills.filter((i) => i !== item);
+    
+    ((i) => i !== item);
     const curUser = { ...userData };
     curUser.skills = newSkillArr;
     setUserData(curUser);
